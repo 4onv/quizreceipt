@@ -1,0 +1,250 @@
+{
+  "researchDate": "2026-11-06",
+  "timezone": "America/Chicago",
+  "observedAtUtc": "2026-11-07T14:29:56Z",
+  "utcWindow": {
+    "startInclusive": "2026-11-06T06:00:00Z",
+    "endExclusive": "2026-11-07T06:00:00Z"
+  },
+  "selection": "quizreceipt",
+  "recommendation": "Build an original offline technical-quiz package centered on literal answer labels, per-choice feedback and an attempt receipt tied to the quiz content digest. A local verification command should regrade the supplied answers against the matching quiz and reject accidental version mismatches.",
+  "selectionCaveat": "Generic standalone quizzes, answer explanations, retries and result exports already exist. The selected convenience is the combination of strict content identity and independently recomputed receipts in a small developer package. No uniqueness or star outcome is claimed.",
+  "trendEvidence": [
+    {
+      "url": "https://github.com/trending?since=daily",
+      "observedAtUtc": "2026-11-06T15:12:09.4836769Z",
+      "localSource": "trending-2026-11-06.json",
+      "kind": "Direct retained rolling observation during the research day",
+      "ranks": {
+        "mattpocock/skills": 15,
+        "microsoft/vscode": 10,
+        "prometheus/prometheus": 8
+      },
+      "limitation": "Positions describe one captured rolling list, not a full-day rank or measured historical star gains."
+    },
+    {
+      "url": "https://github.com/trending?since=daily",
+      "kind": "New rolling snapshot captured by the parent run on November 7",
+      "localSource": "trending-2026-11-07.json",
+      "limitation": "Keep separate from November 6 evidence.",
+      "observedAtUtc": "2026-11-07T14:27:09.6943709Z"
+    }
+  ],
+  "candidates": [
+    {
+      "name": "QuizReceipt",
+      "decision": "selected",
+      "scores": {
+        "demand": 4,
+        "distinctValue": 3,
+        "demoEase": 5,
+        "discoverability": 4
+      },
+      "evidence": [
+        {
+          "url": "https://github.com/mattpocock/skills/issues/1392",
+          "createdAtUtc": "2026-11-06T14:46:59Z",
+          "summary": "A technical-lesson user says quiz options paraphrased code identifiers and grading returned only an aggregate score. They request literal answer choices and accessible per-question correct/incorrect/unanswered feedback and explanations."
+        },
+        {
+          "url": "https://github.com/mattpocock/skills/issues/1392#issuecomment-6687691806",
+          "createdAtUtc": "2026-11-06T14:51:35Z",
+          "summary": "The reporter adds a PowerShell variable-scope example and says the lesson was locally corrected. This validates the usability problem rather than establishing demand for a new standalone package."
+        }
+      ],
+      "distinctValue": "Require exact option text, preserve stable option identifiers, produce an offline quiz, and export a digest-bound attempt that can be regraded locally. Reviewed alternatives already cover much of the quiz player experience. Their reviewed READMEs do not describe the proposed content-bound verification command; this is a scoped comparison, not proof of absence.",
+      "demo": "A labeled synthetic technical quiz opens as one HTML file. Wrong, correct and unanswered states plus explanations can be tried immediately; the same receipt can be regraded using the CLI.",
+      "discoverability": "Technical educators and developers generating lessons with agents are an identifiable audience in the skill tracker. Concrete screenshots and a downloadable quiz make the result understandable. This is an editorial audience-fit judgment.",
+      "risks": "Quiz authors remain responsible for answer correctness. Content digests detect version mismatches; editable receipts and embedded answer keys provide no identity, proctoring or exam-integrity proof."
+    },
+    {
+      "name": "Shell argument diagnostic worksheet",
+      "decision": "defer",
+      "scores": {
+        "demand": 4,
+        "distinctValue": 2,
+        "demoEase": 4,
+        "discoverability": 3
+      },
+      "evidence": [
+        {
+          "url": "https://github.com/microsoft/vscode/issues/346482",
+          "createdAtUtc": "2026-11-06T07:48:53Z",
+          "summary": "A Windows Python launch report shows a path with spaces arriving with literal quote characters."
+        },
+        {
+          "url": "https://github.com/microsoft/vscode/issues/346503",
+          "createdAtUtc": "2026-11-06T10:03:38Z",
+          "summary": "A macOS report describes the same extra-quote launch problem. Both issues were closed and routed to the Python extension; closure does not establish a fix."
+        }
+      ],
+      "distinctValue": "Could compare intended argv against observed argument capture and explain extra quote characters. Existing process inspectors and shell-argument visualizers cover substantial parts of this task.",
+      "demo": "A static synthetic argument comparison is immediate; faithful cross-shell execution and real captures add installation and platform work.",
+      "discoverability": "Searches around spaces in filenames and literal quoting failures are concrete, but generic argv visualization has direct competitors.",
+      "risks": "A simplified parser can misrepresent PowerShell/native-process and Windows command-line rules. Actual runtime capture improves evidence while reducing the instant-demo advantage."
+    },
+    {
+      "name": "PromQL matcher-change preview",
+      "decision": "defer",
+      "scores": {
+        "demand": 4,
+        "distinctValue": 3,
+        "demoEase": 3,
+        "discoverability": 3
+      },
+      "evidence": [
+        {
+          "url": "https://github.com/prometheus/prometheus/issues/20362",
+          "createdAtUtc": "2026-11-06T18:11:22Z",
+          "summary": "A user reports label-matcher set/delete commands mishandling metric names, regex name matchers and consecutive matchers."
+        }
+      ],
+      "distinctValue": "A focused before/after matcher-intent view could make rewrite surprises visible. Prometheus already has query explanation functionality, and safe rewriting requires an up-to-date parser.",
+      "demo": "Synthetic queries can show selector changes offline. Correct parsing and faithful display across PromQL syntax substantially expand the complete first-version scope.",
+      "discoverability": "Monitoring engineers have strong query-specific search intent, but the audience is narrower and existing Prometheus tooling is established.",
+      "risks": "A partial parser can silently misread valid expressions. Version compatibility matters and the live-server behavior would still need separate tests."
+    }
+  ],
+  "scoreMeaning": "Scores are editorial estimates from 1 (weak) to 5 (strong), not measurements of popularity or predictions of stars.",
+  "competitors": [
+    {
+      "repo": "the3ma/course-quiz-builder",
+      "summary": "An offline Node builder already supplies per-question explanations, accessible controls, retry-wrong-only and result JSON. These features alone do not distinguish QuizReceipt.",
+      "sha": "e2ac75e52a9a8214b656d9da1a505a2c74116225",
+      "url": "https://github.com/the3ma/course-quiz-builder/blob/e2ac75e52a9a8214b656d9da1a505a2c74116225/README.md",
+      "basis": "Pinned README and repository metadata reviewed 2026-11-07; selective review, not exhaustive source audit"
+    },
+    {
+      "repo": "lokthok/one-file-quiz",
+      "summary": "A single-file quiz generator supports code blocks, multiple study modes, mistake review, history and progress import/export.",
+      "sha": "abe2f54bf5368d53744d2338b6d76ecb73c7153e",
+      "url": "https://github.com/lokthok/one-file-quiz/blob/abe2f54bf5368d53744d2338b6d76ecb73c7153e/README.md",
+      "basis": "Pinned README and repository metadata reviewed 2026-11-07; selective review, not exhaustive source audit"
+    },
+    {
+      "repo": "u235xuxu/single-file-exam-engine",
+      "summary": "A Python builder accepts YAML/JSON and creates offline HTML for several question types with per-question grading. Its README says results are local and disappear on refresh.",
+      "sha": "4d28cf90bacc8a5fbce4e0732a1f2b133b4a1d16",
+      "url": "https://github.com/u235xuxu/single-file-exam-engine/blob/4d28cf90bacc8a5fbce4e0732a1f2b133b4a1d16/README.md",
+      "basis": "Pinned README and repository metadata reviewed 2026-11-07; selective review, not exhaustive source audit"
+    },
+    {
+      "repo": "bonartm/quizdown-js",
+      "summary": "A Markdown-like browser quiz library supports hints, explanations and different question types. Repository metadata marks it archived; its README gives an archival date of 2025-11-19.",
+      "sha": "3c831c461dcf11c0f97adfa568ac761094e0ccc9",
+      "url": "https://github.com/bonartm/quizdown-js/blob/3c831c461dcf11c0f97adfa568ac761094e0ccc9/README.md",
+      "basis": "Pinned README and repository metadata reviewed 2026-11-07; selective review, not exhaustive source audit"
+    },
+    {
+      "name": "Solo Quiz Player",
+      "url": "https://github.com/salty-flower/solo-quiz",
+      "summary": "A local-first standalone quiz player accepts JSON assessments, provides detailed scoring and exports attempts as CSV.",
+      "basis": "Primary README reviewed 2026-11-07"
+    },
+    {
+      "name": "Command Line Anatomy",
+      "url": "https://robotsfirst.org/tool/cli-argv-parser-visualizer/",
+      "summary": "An existing offline teaching model visualizes argv splitting and quoting across POSIX, cmd and PowerShell. It documents simplifications.",
+      "basis": "Primary product page reviewed 2026-11-07"
+    },
+    {
+      "name": "px",
+      "url": "https://github.com/robch/px",
+      "summary": "A process inspector displays command arguments and execution context on Windows, Linux and macOS.",
+      "basis": "Primary repository README reviewed 2026-11-07"
+    },
+    {
+      "name": "PromLens / Prometheus Explain",
+      "url": "https://github.com/prometheus/promlens",
+      "summary": "The archived PromLens README says much of its query builder/analyzer/visualizer functionality moved into Prometheus's Explain tab.",
+      "basis": "Primary README reviewed 2026-11-07"
+    }
+  ],
+  "excludedDateMistakes": [
+    {
+      "url": "https://github.com/mattpocock/skills/issues/1394",
+      "createdAtUtc": "2026-11-07T12:23:46Z",
+      "reason": "Mermaid label parsing report is outside November 6 Chicago."
+    },
+    {
+      "url": "https://github.com/NVIDIA/auto-ontology/issues/446",
+      "createdAtUtc": "2026-11-07T07:04:34Z",
+      "reason": "Unused environment-setting report is outside November 6 Chicago."
+    }
+  ],
+  "nameCheck": {
+    "query": "quizreceipt",
+    "source": "GitHub repository search",
+    "checkedAtUtc": "2026-11-07T14:29:56Z",
+    "result": "No repositories returned; this is a search observation, not a trademark check."
+  },
+  "portfolioObservation": {
+    "observedAtUtc": "2026-11-07T14:27:15Z",
+    "interpretation": "All seven tracked repositories have zero stars and zero forks. Every measured net change is zero against both the first baseline and the preceding observation. Their public issue and pull-request collections are empty, including closed items. There is no measured star-growth leader or concrete external feedback.",
+    "repositories": [
+      {
+        "repository": "4onv/skilldelta",
+        "stars": 0,
+        "forks": 0,
+        "baselineAtUtc": "2026-11-04T04:43:17.857881Z",
+        "starDeltaSinceBaseline": 0,
+        "forkDeltaSinceBaseline": 0,
+        "sourceURL": "https://api.github.com/repos/4onv/skilldelta"
+      },
+      {
+        "repository": "4onv/trace-tally",
+        "stars": 0,
+        "forks": 0,
+        "baselineAtUtc": "2026-11-04T04:43:17.857881Z",
+        "starDeltaSinceBaseline": 0,
+        "forkDeltaSinceBaseline": 0,
+        "sourceURL": "https://api.github.com/repos/4onv/trace-tally"
+      },
+      {
+        "repository": "4onv/cueaudit",
+        "stars": 0,
+        "forks": 0,
+        "baselineAtUtc": "2026-11-04T04:43:17.857881Z",
+        "starDeltaSinceBaseline": 0,
+        "forkDeltaSinceBaseline": 0,
+        "sourceURL": "https://api.github.com/repos/4onv/cueaudit"
+      },
+      {
+        "repository": "4onv/axscope",
+        "stars": 0,
+        "forks": 0,
+        "baselineAtUtc": "2026-11-04T04:43:17.857881Z",
+        "starDeltaSinceBaseline": 0,
+        "forkDeltaSinceBaseline": 0,
+        "sourceURL": "https://api.github.com/repos/4onv/axscope"
+      },
+      {
+        "repository": "4onv/stashscope",
+        "stars": 0,
+        "forks": 0,
+        "baselineAtUtc": "2026-11-04T17:40:33.7078459Z",
+        "starDeltaSinceBaseline": 0,
+        "forkDeltaSinceBaseline": 0,
+        "sourceURL": "https://api.github.com/repos/4onv/stashscope"
+      },
+      {
+        "repository": "4onv/sql-slotcheck",
+        "stars": 0,
+        "forks": 0,
+        "baselineAtUtc": "2026-11-05T14:09:32.0893889Z",
+        "starDeltaSinceBaseline": 0,
+        "forkDeltaSinceBaseline": 0,
+        "sourceURL": "https://api.github.com/repos/4onv/sql-slotcheck"
+      },
+      {
+        "repository": "4onv/baselens",
+        "stars": 0,
+        "forks": 0,
+        "baselineAtUtc": "2026-11-06T15:32:53.0774362Z",
+        "starDeltaSinceBaseline": 0,
+        "forkDeltaSinceBaseline": 0,
+        "sourceURL": "https://api.github.com/repos/4onv/baselens"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "observedAtUtc": "2026-11-07T14:27:09.6943709Z",
+  "sourceUrl": "https://github.com/trending?since=daily",
+  "interpretation": "November7 rolling snapshot; distinct from prior local day evidence",
+  "repositories": [
+    "cloudflare/security-audit-skill",
+    "google/skills",
+    "mattpocock/skills",
+    "anthropics/skills",
+    "meta/astryx",
+    "prometheus/prometheus",
+    "sherlock-project/sherlock",
+    "milind-soni/OpenMausBot",
+    "astral-sh/ruff",
+    "tailwindlabs/tailwindcss",
+    "mbillow/localthings",
+    "zed-industries/zed",
+    "ranxianglei/billion-context",
+    "dsx-ai-factory/nvke"
+  ]
+}

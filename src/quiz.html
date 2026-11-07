@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An offline practice quiz with explanations for every option and a verifiable answer receipt.">
+  <title>QuizReceipt · Offline practice</title>
+  <style>/* QUIZ_STYLE */</style>
+</head>
+<body>
+  <a class="qr-skip" href="#question-list">Skip to the questions</a>
+  <div class="qr-shell">
+    <header class="qr-brandbar">
+      <div class="qr-brand"><span class="qr-mark" aria-hidden="true">q<span>✓</span></span><span>QuizReceipt</span></div>
+      <span class="qr-local"><span aria-hidden="true"></span>Offline practice</span>
+    </header>
+    <main>
+      <section class="qr-intro" aria-labelledby="quiz-title">
+        <p class="qr-eyebrow">Choose. Check. Understand.</p>
+        <h1 id="quiz-title">Loading quiz…</h1>
+        <p id="quiz-description" class="qr-description"></p>
+        <div class="qr-intro-meta"><span id="quiz-question-count"></span><span>Single choice</span><span>Explanations included</span></div>
+      </section>
+      <p id="error-message" class="qr-error" role="alert" hidden></p>
+      <p id="status-message" class="qr-status" role="status" aria-live="polite"></p>
+      <div class="qr-layout">
+        <aside class="qr-sidebar" aria-label="Progress and receipt">
+          <section class="qr-card qr-progress-card" aria-labelledby="progress-heading">
+            <div class="qr-card-heading"><h2 id="progress-heading">Your progress</h2><span id="answered-count" class="qr-small"></span></div>
+            <progress id="answered-progress" max="1" value="0" aria-label="Questions answered"></progress>
+            <section id="grade-summary" class="qr-grade-summary" tabindex="-1" aria-labelledby="grade-heading">
+              <h3 id="grade-heading">Ready when you are</h3>
+              <p id="grade-description">Choose your answers, then check them for question-by-question feedback.</p>
+              <dl id="grade-counts" class="qr-grade-counts" hidden>
+                <div><dt>Correct</dt><dd id="correct-count">0</dd></div>
+                <div><dt>Incorrect</dt><dd id="incorrect-count">0</dd></div>
+                <div><dt>Unanswered</dt><dd id="unanswered-count">0</dd></div>
+              </dl>
+            </section>
+            <div class="qr-review-actions"><button id="retry-button" class="qr-secondary" type="button" disabled>Retry missed questions</button><button id="reset-button" class="qr-text-button" type="button">Start over</button></div>
+          </section>
+          <section class="qr-card qr-receipt-card" aria-labelledby="receipt-heading">
+            <span class="qr-section-kicker">Take your progress with you</span>
+            <h2 id="receipt-heading">A receipt for this quiz</h2>
+            <p>Save your answers and results as JSON. Import the receipt here to restore them and check that they match this exact quiz.</p>
+            <button id="receipt-button" class="qr-secondary" type="button" disabled>Download receipt <span aria-hidden="true">↓</span></button>
+            <label class="qr-file-label" for="receipt-file">Import a receipt<input id="receipt-file" type="file" accept=".json,application/json" aria-describedby="receipt-file-hint"></label>
+            <p id="receipt-file-hint" class="qr-small">UTF-8 JSON · up to 1 MiB</p>
+            <details class="qr-fingerprint-detail"><summary>Quiz fingerprint</summary><p id="quiz-fingerprint" class="qr-fingerprint">Calculating SHA-256…</p><p class="qr-small">Binds the receipt to the exact quiz content and answer key.</p></details>
+          </section>
+        </aside>
+        <form id="quiz-form" class="qr-form" novalidate>
+          <div id="question-list" class="qr-question-list" tabindex="-1"></div>
+          <div class="qr-checkbar"><p id="check-hint">Check whenever you are ready. Unanswered questions stay visible in the results.</p><button id="check-button" class="qr-primary" type="submit">Check answers <span aria-hidden="true">→</span></button></div>
+        </form>
+      </div>
+      <footer class="qr-footer">
+        <p><strong>Built for learning.</strong> This file includes the answer key. Receipts are editable records whose contents can be checked against this quiz. They cannot prove who completed it or how they answered.</p>
+        <p>Work stays in this tab until you download a receipt. The receipt includes selected answers and grading details. Review it before sharing.</p>
+      </footer>
+    </main>
+  </div>
+  <script>/* QUIZ_SCRIPT */</script>
+</body>
+</html>

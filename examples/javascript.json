@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "id": "javascript-values-demo",
+  "title": "Small expressions, precise answers",
+  "description": "Synthetic demonstration authored for QuizReceipt. Three JavaScript expressions show exact option labels, individual explanations and a downloadable feedback record. Choose an answer for each question, or leave one unanswered to see that state.",
+  "questions": [
+    {
+      "id": "nan-equality",
+      "prompt": "What does this expression return?\n\nObject.is(NaN, NaN)",
+      "options": [
+        { "id": "true", "label": "true", "explanation": "Object.is considers NaN the same value as NaN." },
+        { "id": "false", "label": "false", "explanation": "NaN === NaN is false, but Object.is uses different equality semantics." },
+        { "id": "throws", "label": "Throws a TypeError", "explanation": "Both arguments are valid JavaScript values. This call completes normally." }
+      ],
+      "answer": "true",
+      "explanation": "Object.is compares values using the SameValue algorithm. Its treatment of NaN differs from strict equality."
+    },
+    {
+      "id": "array-membership",
+      "prompt": "What does this expression return?\n\n['red', 'blue'].includes('green')",
+      "options": [
+        { "id": "true", "label": "true", "explanation": "The array contains red and blue. It contains no green entry." },
+        { "id": "false", "label": "false", "explanation": "includes returns false when the searched value is absent." },
+        { "id": "undefined", "label": "undefined", "explanation": "includes returns a boolean, including when the searched value is absent." }
+      ],
+      "answer": "false",
+      "explanation": "Array.prototype.includes checks membership and returns a boolean. Here the requested string is absent."
+    },
+    {
+      "id": "null-type",
+      "prompt": "What does this expression return?\n\ntypeof null",
+      "options": [
+        { "id": "null", "label": "\"null\"", "explanation": "The typeof operator has no null result string." },
+        { "id": "object", "label": "\"object\"", "explanation": "JavaScript reports null as object through typeof, a historical behavior of the language." },
+        { "id": "undefined", "label": "\"undefined\"", "explanation": "typeof undefined returns this string. Null and undefined are different values." }
+      ],
+      "answer": "object",
+      "explanation": "The result is the string object. Use value === null when you specifically need to detect null."
+    }
+  ]
+}

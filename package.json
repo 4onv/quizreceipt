@@ -1,0 +1,19 @@
+{
+  "name": "@4onv/quizreceipt",
+  "version": "0.1.0",
+  "description": "Compile offline quizzes and regrade content-bound feedback receipts.",
+  "license": "MIT",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "bin": { "quizreceipt": "bin/quizreceipt.js" },
+  "exports": { ".": "./src/index.js", "./core": "./src/core.js" },
+  "files": ["bin", "src", "examples", "docs", "README.md", "LICENSE"],
+  "repository": { "type": "git", "url": "https://github.com/4onv/quizreceipt.git" },
+  "scripts": {
+    "test": "node --test test/core.test.js test/compiler.test.js test/cli.test.js",
+    "demo": "node scripts/build-demo.js",
+    "test:browser": "playwright test",
+    "check:package": "node scripts/check-package.js"
+  },
+  "devDependencies": { "@playwright/test": "1.65.0" }
+}

@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.quizreceipt/
+test-results/
+playwright-report/
+*.tgz
