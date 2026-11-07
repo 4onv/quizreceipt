@@ -41,3 +41,6 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run demo
       - run: npm run test:browser
+        env:
+          # The container runs as root; Firefox requires a home owned by that user.
+          HOME: /root
