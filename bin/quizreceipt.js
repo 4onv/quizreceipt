@@ -1,11 +1,12 @@
 #!/usr/bin/env node
+import { constants } from 'node:fs';
 import { open, writeFile, readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { parseJson, MAX_JSON_BYTES } from '../src/parse-json.js';
 import { validateQuiz, fingerprintQuiz, verifyReceipt } from '../src/core.js';
 import { renderQuiz } from '../src/compiler.js';
 
-const help = `QuizReceipt 0.1.0
+const help = `QuizReceipt 0.1.1
   quizreceipt build QUIZ.json --out QUIZ.html
   quizreceipt demo --out DEMO.html
   quizreceipt validate QUIZ.json
@@ -16,7 +17,7 @@ regrades their selections against the exact quiz content.
 `;
 
 async function load(path) {
-  const handle = await open(path, 'r');
+  const handle = await open(path, constants.O_RDONLY | (constants.O_NONBLOCK ?? 0));
   try {
     if (!(await handle.stat()).isFile()) throw new Error('Input must be a regular file');
     const bytes = Buffer.alloc(MAX_JSON_BYTES + 1);
@@ -35,7 +36,7 @@ async function load(path) {
 
 async function main(args) {
   if (args.length === 0 || (args.length === 1 && ['--help', '-h'].includes(args[0]))) { process.stdout.write(help); return; }
-  if (args.length === 1 && args[0] === '--version') { console.log('0.1.0'); return; }
+  if (args.length === 1 && args[0] === '--version') { console.log('0.1.1'); return; }
   const [command, ...rest] = args;
   if (command === 'build' || command === 'demo') {
     const demo = command === 'demo';

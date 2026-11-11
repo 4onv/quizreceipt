@@ -4,7 +4,7 @@
 
 QuizReceipt preserves literal answer labels, explains each choice, distinguishes unanswered questions, and exports a receipt that the CLI can regrade. A SHA-256 fingerprint binds the record to the quiz's complete content, including its answer key and explanations.
 
-[Download the standalone demo](https://github.com/4onv/quizreceipt/releases/download/v0.1.0/quizreceipt-demo.html) · [Release](https://github.com/4onv/quizreceipt/releases/tag/v0.1.0) · [Schema and receipt format](docs/format.md)
+[Download the standalone demo](https://github.com/4onv/quizreceipt/releases/download/v0.1.1/quizreceipt-demo.html) · [Release](https://github.com/4onv/quizreceipt/releases/tag/v0.1.1) · [Schema and receipt format](docs/format.md)
 
 Save the HTML and open it locally in a modern browser. The demonstration is synthetic, with three JavaScript questions. Try one correct answer, one incorrect answer and one unanswered question, then download its receipt.
 
@@ -15,7 +15,7 @@ Save the HTML and open it locally in a modern browser. The demonstration is synt
 Node.js 22+ is required for the CLI. Install the GitHub release package directly.
 
 ```sh
-npm install -g https://github.com/4onv/quizreceipt/releases/download/v0.1.0/4onv-quizreceipt-0.1.0.tgz
+npm install -g https://github.com/4onv/quizreceipt/releases/download/v0.1.1/4onv-quizreceipt-0.1.1.tgz
 quizreceipt demo --out lesson.html
 ```
 
@@ -86,7 +86,7 @@ The package also exports `validateQuiz`, `canonicalQuiz`, `fingerprintQuiz`, `gr
 - Browser state stays in memory. Save a receipt to restore an attempt later. Receipts contain selected answers and feedback, so review them before sharing.
 - The HTML uses text-only rendering and a restrictive embedded Content Security Policy. It loads its application code and styles from the file itself.
 - Chromium and Firefox are exercised with real file-based browser tests. Safari verification is pending. Receipt features require secure-context Web Crypto, available in the tested browsers when opening the HTML locally.
-- There is no partial credit, rich HTML question content, answer randomization or identity verification in v0.1.0. Knowledge accuracy depends on the authored answer key and explanations.
+- There is no partial credit, rich HTML question content, answer randomization or identity verification in v0.1.1. Knowledge accuracy depends on the authored answer key and explanations.
 
 ## Why this project
 
@@ -103,7 +103,7 @@ npm run demo
 npx playwright install chromium firefox
 npm run test:browser
 npm pack
-npm run check:package -- 4onv-quizreceipt-0.1.0.tgz
+npm run check:package -- 4onv-quizreceipt-0.1.1.tgz
 ```
 
 The runtime package has zero dependencies. Development dependencies provide browser testing. CI covers Node 22/24 on Linux and Windows and runs the generated lesson in Chromium and Firefox. The browser job uses a pinned official Playwright container image with browsers and system dependencies preinstalled.

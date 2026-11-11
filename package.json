@@ -1,6 +1,6 @@
 {
   "name": "@4onv/quizreceipt",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Compile offline quizzes and regrade content-bound feedback receipts.",
   "license": "MIT",
   "type": "module",

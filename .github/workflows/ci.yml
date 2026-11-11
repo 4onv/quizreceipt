@@ -23,7 +23,7 @@ jobs:
       - run: npm test
       - run: npm run demo
       - run: npm pack --ignore-scripts
-      - run: npm run check:package -- 4onv-quizreceipt-0.1.0.tgz
+      - run: npm run check:package -- 4onv-quizreceipt-0.1.1.tgz
   browsers:
     name: Chromium and Firefox offline quiz
     runs-on: ubuntu-latest

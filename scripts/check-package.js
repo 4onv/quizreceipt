@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 
 const npm = process.env.npm_execpath;
 if (!npm) throw new Error('Use npm run check:package -- ARCHIVE');
-const archive = resolve(process.argv[2] || '4onv-quizreceipt-0.1.0.tgz');
+const archive = resolve(process.argv[2] || '4onv-quizreceipt-0.1.1.tgz');
 const scratch = await mkdtemp(join(tmpdir(), 'quizreceipt-package-'));
 try {
   await writeFile(join(scratch, 'package.json'), '{"private":true,"type":"module"}');
@@ -13,7 +13,7 @@ try {
   const installed = join(scratch, 'node_modules/@4onv/quizreceipt');
   const bin = join(installed, 'bin/quizreceipt.js');
   const run = args => execFileSync(process.execPath, [bin, ...args], { cwd: scratch, encoding: 'utf8' });
-  if (run(['--version']).trim() !== '0.1.0') throw new Error('Installed version mismatch');
+  if (run(['--version']).trim() !== '0.1.1') throw new Error('Installed version mismatch');
   run(['demo', '--out', 'demo.html']);
   const info = JSON.parse(run(['validate', join(installed, 'examples/javascript.json')]));
   if (info.questions !== 3) throw new Error('Installed fixture mismatch');

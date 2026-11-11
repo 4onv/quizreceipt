@@ -20,6 +20,15 @@ async function scratch(fn) {
   }
 }
 
+test('a POSIX quiz FIFO fails without waiting for a writer', { skip: process.platform === 'win32' }, async () => scratch(async dir => {
+  const fifo = join(dir, 'quiz.json');
+  assert.equal(spawnSync('mkfifo', [fifo], { timeout: 5000 }).status, 0);
+  const result = spawnSync(process.execPath, [bin, 'validate', fifo], { encoding: 'utf8', timeout: 10000 });
+  assert.ifError(result.error);
+  assert.equal(result.status, 2);
+  assert.match(result.stderr, /regular file/);
+}));
+
 test('validate and build from an arbitrary working directory, without overwrites', async () => scratch(async dir => {
   assert.equal(JSON.parse(run('validate', source).stdout).questions, 3);
   const output = join(dir, 'lesson.html');
@@ -62,6 +71,6 @@ test('demo creates a standalone artifact and help/version work', async () => scr
   const path = join(dir, 'demo.html');
   assert.equal(run('demo', '--out', path).status, 0);
   assert.ok((await readFile(path, 'utf8')).includes('Synthetic demonstration'));
-  assert.equal(run('--version').stdout.trim(), '0.1.0');
+  assert.equal(run('--version').stdout.trim(), '0.1.1');
   assert.match(run('--help').stdout, /verify QUIZ.json/);
 }));
