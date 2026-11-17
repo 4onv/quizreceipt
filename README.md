@@ -85,7 +85,7 @@ The package also exports `validateQuiz`, `canonicalQuiz`, `fingerprintQuiz`, `gr
 - Canonical quiz JSON is bounded to 512 KiB. File and receipt JSON inputs are bounded to 1 MiB, with at most 24 nesting levels. Strings have individual limits documented in the schema.
 - Browser state stays in memory. Save a receipt to restore an attempt later. Receipts contain selected answers and feedback, so review them before sharing.
 - The HTML uses text-only rendering and a restrictive embedded Content Security Policy. It loads its application code and styles from the file itself.
-- Chromium and Firefox are exercised with real file-based browser tests. Safari verification is pending. Receipt features require secure-context Web Crypto, available in the tested browsers when opening the HTML locally.
+- Playwright tests receipt download, regrading, and reimport from a local HTML file in Chromium, Firefox, and WebKit. Safari on Apple devices still needs direct verification. Receipt features require secure-context Web Crypto.
 - There is no partial credit, rich HTML question content, answer randomization or identity verification in v0.1.1. Knowledge accuracy depends on the authored answer key and explanations.
 
 ## Why this project
@@ -100,12 +100,12 @@ Existing offline quiz builders already offer explanations, retries and exports. 
 npm ci
 npm test
 npm run demo
-npx playwright install chromium firefox
+npx playwright install chromium firefox webkit
 npm run test:browser
 npm pack
 npm run check:package -- 4onv-quizreceipt-0.1.1.tgz
 ```
 
-The runtime package has zero dependencies. Development dependencies provide browser testing. CI covers Node 22/24 on Linux and Windows and runs the generated lesson in Chromium and Firefox. The browser job uses a pinned official Playwright container image with browsers and system dependencies preinstalled.
+The runtime package has zero dependencies. CI covers Node 22/24 on Linux and Windows. The three-browser job uses a pinned official Playwright image.
 
 Bug reports should include a minimal quiz, the relevant receipt if shareable, the expected behavior and the browser/Node version. Useful next work includes licensed real lesson fixtures, Safari checks and integrations that consume the verified feedback. MIT licensed.

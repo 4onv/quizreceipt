@@ -25,7 +25,7 @@ jobs:
       - run: npm pack --ignore-scripts
       - run: npm run check:package -- 4onv-quizreceipt-0.1.1.tgz
   browsers:
-    name: Chromium and Firefox offline quiz
+    name: Chromium, Firefox and WebKit offline quiz
     runs-on: ubuntu-latest
     timeout-minutes: 15
     container:
